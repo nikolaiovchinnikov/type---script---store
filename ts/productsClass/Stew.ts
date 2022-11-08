@@ -43,4 +43,20 @@ export class Stew extends Product {
         }
         return "erorr"
     }
+        public get properties():object{
+        let IsFresh = this.IsFresh()
+        let propertiesDict: { 
+            name: string; 
+            deliveryTimestamp: Date | str;
+            storagePlace:StoragePlace;
+            storageLifeDays:storageLifeDays;
+            IsFresh:bool | str} = {
+                name: this.name,
+                deliveryTimestamp: this.deliveryTimestamp,
+                storagePlace: this.storagePlace,
+                storageLifeDays:this.storageLifeDays,
+                IsFresh : IsFresh
+        }
+        return propertiesDict
+    }
 }

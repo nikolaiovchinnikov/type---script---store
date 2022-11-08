@@ -5,6 +5,13 @@ type storageLifeDays = {
     Icebox:num
     Showcase:num
 }
+type propertiesDict = { 
+    name: string; 
+    deliveryTimestamp: Date | str;
+    storagePlace:StoragePlace;
+    storageLifeDays:storageLifeDays;
+    IsFresh:bool | str
+} 
 import { Product } from "../Product";
 import { StoragePlace } from "../StoragePlace";
 export class Milk extends Product {
@@ -41,5 +48,21 @@ export class Milk extends Product {
             }
         }
         return "erorr"
+    }
+        public get properties():propertiesDict{
+        let IsFresh = this.IsFresh()
+        let propertiesDict: { 
+            name: string; 
+            deliveryTimestamp: Date | str;
+            storagePlace:StoragePlace;
+            storageLifeDays:storageLifeDays;
+            IsFresh:bool | str} = {
+                name: this.name,
+                deliveryTimestamp: this.deliveryTimestamp,
+                storagePlace: this.storagePlace,
+                storageLifeDays:this.storageLifeDays,
+                IsFresh : IsFresh
+        }
+        return propertiesDict
     }
 }

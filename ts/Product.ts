@@ -9,6 +9,7 @@ export abstract class Product {
     constructor(){
 
     }
-    public abstract IsFresh(): boolean | str;
+    protected abstract IsFresh(): boolean | str;
+    public abstract get properties():object
 
 }

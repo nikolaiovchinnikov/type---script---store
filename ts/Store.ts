@@ -1,6 +1,15 @@
 type str = string
 type num = number
 type bool = boolean
+type storageLifeDays = number
+type propertiesDict = { 
+    name: string; 
+    deliveryTimestamp: Date | str;
+    storagePlace:StoragePlace;
+    storageLifeDays:storageLifeDays;
+    IsFresh:bool | str
+} 
+import { getString } from "./productsClass/getTabel.js"
 import { Product } from "./Product.js"
 import { Salt } from "./productsClass/Salt.js"
 import { Stew } from "./productsClass/Stew.js"
@@ -11,7 +20,7 @@ import { getRandomNumber } from "./getRandomNumber.js"//импортировал
 import { StoragePlace } from "./StoragePlace.js"
 
 class Store {
-    public _products:Array<Product> = []
+    private _products:Array<Product> = []
     constructor(){
         for (let i = 0; i < 20; i++) {
             const product:Product | num = this.getRandomProduct()
@@ -34,13 +43,16 @@ class Store {
             default:
                 return 0
             }
-            
     }
     public DoInspection(){
+        let list = `  Product  |Delivered at               |Storage place    |S. life days          |Fresh         \n`
+        list += `-----------+---------------------------+-----------------+----------------------+----------\n`
         for (let i of this._products) {
-            console.log(i.IsFresh())
-            
+            let index = i.properties
+            list += getString(<propertiesDict>index)
         }
+        list += `-----------+---------------------------+-----------------+----------------------+----------\n`
+        return list
 
     }
     private GetRandomDeliveryTime():Date {
@@ -59,5 +71,4 @@ class Store {
     }
 }
 const store:Store = new Store()
-store.DoInspection()
-// console.log(store._products)
+console.log( store.DoInspection())
