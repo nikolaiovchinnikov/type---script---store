@@ -1,10 +1,4 @@
-type str = string
-type num = number
-type bool = boolean
-type storageLifeDays = {
-    Icebox:num
-    Showcase:num
-}
+import { propertiesDict ,storageLifeDays, str,num, bool} from "../interfase.js"
 import { Product } from "../Product";
 import { StoragePlace } from "../StoragePlace";
 export class Stew extends Product {
@@ -19,8 +13,8 @@ export class Stew extends Product {
         this.name = "Кукуруза"
         this.storageLifeDays = 
         this.storageLifeDays = {
-            Icebox : 86400000 * 150,
-            Showcase : 86400000 * 150
+            Icebox :<num> 86400000 * 150,
+            Showcase :<num> 86400000 * 150
         }
     }
     public IsFresh(): boolean | str{
@@ -43,20 +37,5 @@ export class Stew extends Product {
         }
         return "erorr"
     }
-        public get properties():object{
-        let IsFresh = this.IsFresh()
-        let propertiesDict: { 
-            name: string; 
-            deliveryTimestamp: Date | str;
-            storagePlace:StoragePlace;
-            storageLifeDays:storageLifeDays;
-            IsFresh:bool | str} = {
-                name: this.name,
-                deliveryTimestamp: this.deliveryTimestamp,
-                storagePlace: this.storagePlace,
-                storageLifeDays:this.storageLifeDays,
-                IsFresh : IsFresh
-        }
-        return propertiesDict
-    }
+
 }

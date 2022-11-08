@@ -1,15 +1,6 @@
-type str = string
-type num = number
-type bool = boolean
-type storageLifeDays = number
-type propertiesDict = { 
-    name: string; 
-    deliveryTimestamp: Date | str;
-    storagePlace:StoragePlace;
-    storageLifeDays:storageLifeDays;
-    IsFresh:bool | str
-} 
-import { getString } from "./productsClass/getTabel.js"
+
+import { propertiesDict ,num ,storageLifeDays} from "./interfase.js"
+import { getString } from "./getTabel.js"
 import { Product } from "./Product.js"
 import { Salt } from "./productsClass/Salt.js"
 import { Stew } from "./productsClass/Stew.js"
